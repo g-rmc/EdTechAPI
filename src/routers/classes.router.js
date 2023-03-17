@@ -1,8 +1,8 @@
 import express from "express";
 
+import { classesController } from "../controllers/classes.controller.js";
 import { validateSchema } from '../middlewares/validateSchema.middleware.js';
 import { nameSchema, classSubjectSchema } from "../schemas/index.js";
-import { classesController } from "../controllers/classes.controller.js";
 
 const classesRouter = express.Router();
 
