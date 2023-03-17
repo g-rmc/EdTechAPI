@@ -46,9 +46,19 @@ async function createTeacherSubject(teacherId, subjectId) {
     return await teachersRepository.createTeacherSubjectById(teacherId, subjectId);
 }
 
+async function deleteTeacherById(teacherId) {
+    const teacher = await teachersRepository.findTeacherById(teacherId);
+    if (!teacher) throw new Error('teacherId not found');
+
+    await teachersRepository.removeTeacherSubjectByTeacherId(teacherId);
+
+    return await teachersRepository.removeTeacherById(teacherId);
+}
+
 export const teachersService = {
     getTeachersList,
     getTeacherById,
     createNewTeacher,
-    createTeacherSubject
+    createTeacherSubject,
+    deleteTeacherById
 }

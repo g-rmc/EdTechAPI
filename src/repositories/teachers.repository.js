@@ -62,6 +62,14 @@ function removeTeacherById(id) {
     });
 }
 
+function removeTeacherSubjectByTeacherId(teacherId) {
+    return prisma.teachers_subjects.deleteMany({
+        where: {
+            teacherId
+        }
+    })
+}
+
 export const teachersRepository = {
     findTeachers,
     findTeacherById,
@@ -69,5 +77,6 @@ export const teachersRepository = {
     createTeacher,
     findTeacherSubjectById,
     createTeacherSubjectById,
-    removeTeacherById
+    removeTeacherById,
+    removeTeacherSubjectByTeacherId
 }
