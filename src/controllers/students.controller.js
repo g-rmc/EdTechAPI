@@ -10,7 +10,7 @@ async function getStudents(req, res) {
 }
 
 async function getStudentById(req, res) {
-    const studentId = req.params.id;
+    const studentId = +req.params.id;
 
     try {
         const student = await studentsService.getStudentById(studentId);
@@ -34,7 +34,7 @@ async function postNewStudent(req, res) {
 }
 
 async function deleteStudent(req, res) {
-    const studentId = req.params.id;
+    const studentId = +req.params.id;
 
     try {
         await studentsService.deleteStudentById(studentId);

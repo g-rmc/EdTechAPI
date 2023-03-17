@@ -5,6 +5,13 @@ async function getStudentsList() {
     return studentsList;
 }
 
+async function getStudentById(studentId) {
+    const student = await studentsRepository.findStudentById(studentId);
+    if (!student) throw new Error('studentId not found');
+
+    return student;
+}
+
 async function createNewUniqueClass(className) {
     const duplicatedClass = await classesRepository.findClassByName(className);
     if (duplicatedClass) throw new Error('className already exists');
@@ -27,4 +34,5 @@ async function createClassSubject(classId, subjectId) {
 
 export const studentsService = {
     getStudentsList,
+    getStudentById
 }
