@@ -76,17 +76,28 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 
 ### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /students/:id
 
-- Student info
+- Student info with class, subjects and teachers
 
 ```json
 {
-  "id": 2,
-  "name": "Maria",
-  "email": "maria@email.com",
-  "classId": 1,
-  "classes": {
-    "id": 1,
-    "name": "Turma 8A"
+  "id": 1,
+  "name": "João",
+  "email": "joao@email.com",
+  "class": {
+    "classId": 1,
+    "className": "Turma 8A",
+    "subjects": [
+      {
+        "subjectId": 1,
+        "subjectName": "Matemática",
+        "subjectTeacher": "Sr Carlos"
+      },
+      {
+        "subjectId": 2,
+        "subjectName": "História",
+        "subjectTeacher": "Sra Ana"
+      }
+    ]
   }
 }
 ```
