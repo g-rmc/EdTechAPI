@@ -1,12 +1,14 @@
 import express from "express";
 
-//import { myFunction } from '../controllers.js';
+import { validateSchema } from '../middlewares/validateSchema.middleware.js';
+import { nameSchema, classSubjectSchema } from "../schemas/index.js";
+import { classesController } from "../controllers/classes.controller.js";
 
 const classesRouter = express.Router();
 
 classesRouter
-    .get('/', (req, res) => {res.sendStatus(400)})
-    .post('/', (req, res) => {res.sendStatus(400)})
-    .post('/subject', (req, res) => {res.sendStatus(400)});
+    .get('/', classesController.getClasses)
+    .post('/', validateSchema(nameSchema, 'body'), classesController.postNewClass)
+    .post('/subject', validateSchema(classSubjectSchema, 'body'), classesController.postClassSubject);
 
 export { classesRouter };
