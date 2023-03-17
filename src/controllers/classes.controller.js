@@ -1,13 +1,12 @@
-//import { classesRepository } from '../repositories/index.js';
+import { classesService } from "../services/index.js";
 
 async function getClasses(req, res) {
     try {
-        
+        const classes = await classesService.getClassesList();
+        res.send(classes);
     } catch (error) {
-        
+        res.status(400).send(error.message);
     }
-    
-    res.sendStatus(400);
 }
 
 async function postNewClass(req, res) {

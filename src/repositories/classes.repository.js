@@ -1,8 +1,4 @@
-//import { prisma } from '../database/database.js';
-
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from '../database/database.js';
 
 function findClasses() {
     return prisma.classes.findMany();
