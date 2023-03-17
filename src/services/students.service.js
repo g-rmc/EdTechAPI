@@ -1,8 +1,8 @@
 import { classesRepository, studentsRepository } from "../repositories/index.js";
 
 async function getStudentsList() {
-    const classesList = await classesRepository.findClasses();
-    return classesList;
+    const studentsList = await studentsRepository.findStudents();
+    return studentsList;
 }
 
 async function createNewUniqueClass(className) {
@@ -25,8 +25,6 @@ async function createClassSubject(classId, subjectId) {
     return await classesRepository.createClassSubjectById(classId, subjectId);
 }
 
-export const classesService = {
-    getClassesList,
-    createNewUniqueClass,
-    createClassSubject
+export const studentsService = {
+    getStudentsList,
 }
