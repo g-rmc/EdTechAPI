@@ -7,8 +7,10 @@ const app = express();
 app
     .use(cors())
     .use(express.json())
-    .get('/status', (_req, res) => res.send('Ok!'))
-    .get('/hello', (_req, res) => res.send('Hello!'))
-    //.use(coasterRouter);
+    .get('/status', (req, res) => res.send('Ok!'))
+    .get('/hello', (req, res) => res.send('Hello!'))
+    //.use('/class', classesRouter)
+    //.use('/teacher', teachersRouter)
+    //.use('/student', classesRouter);
 
 export default app;
