@@ -24,7 +24,13 @@ async function postClassSubject(req, res) {
     const classId = +req.body.classId;
     const subjectId = +req.body.subjectId;
 
-    res.sendStatus(400);
+    try {
+        await classesService.createClassSubject(classId, subjectId);
+        res.sendStatus(201);
+    } catch (error) {
+        if (error.message.includes('not found')) return res.status(404).send(error.message);
+        res.status(400).send(error.message);
+    }
 }
 
 export const classesController = {

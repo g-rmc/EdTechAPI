@@ -16,9 +16,9 @@ model classes {
 
 model classes_subjects {
   id        Int       @id @default(autoincrement())
-  classesId Int?
+  classId Int?
   subjectId Int?
-  classes   classes?  @relation(fields: [classesId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  classes   classes?  @relation(fields: [classId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   subjects  subjects? @relation(fields: [subjectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 

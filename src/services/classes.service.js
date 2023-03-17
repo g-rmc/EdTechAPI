@@ -1,4 +1,4 @@
-import { classesRepository } from "../repositories/index.js";
+import { classesRepository, subjectsRepository } from "../repositories/index.js";
 
 async function getClassesList() {
     const classesList = await classesRepository.findClasses();
@@ -12,7 +12,18 @@ async function createNewUniqueClass(className) {
     return await classesRepository.createClassByName(className);
 }
 
+async function createClassSubject(classId, subjectId) {
+    const validClassId = await classesRepository.findClassById(classId);
+    if (!validClassId) throw new Error('classId not found');
+
+    const validSubjectId = await subjectsRepository.findSubjectById(subjectId);
+    if (!validSubjectId) throw new Error('subjectId not found');
+
+    return await classesRepository.createClassSubjectById(classId, subjectId);
+}
+
 export const classesService = {
     getClassesList,
     createNewUniqueClass,
+    createClassSubject
 }
