@@ -4,11 +4,13 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 
 ## Documentation
 
-### GET /status
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /status
 
 - **200** : Ok! The server is working!
 
-### GET /classes
+---
+
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /classes
 
 - List of classes
 
@@ -21,7 +23,7 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 ]
 ```
 
-### POST /classes
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /classes
 
 - Create new class with unique name
 
@@ -35,7 +37,7 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 - **400** : Invalid body (see error message)
 - **409** : Class name already exists
 
-### POST /classes/subject
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /classes/subject
 
 - Create new register of subject for a class
 
@@ -51,7 +53,9 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 - **404** : Class or Subject Id not found (see error message)
 - **409** : Register already exists
 
-### GET /students
+---
+
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /students
 
 - List of students
 
@@ -70,7 +74,7 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 ]
 ```
 
-### GET /students/:id
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /students/:id
 
 - Student info
 
@@ -87,7 +91,7 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 }
 ```
 
-### POST /students
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /students
 
 - Create new student
 
@@ -104,12 +108,14 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 - **404** : Class Id not found
 - **409** : Student email already exists
 
-### DELETE /students/:id
+### ![#F93E3E](https://placehold.co/15x15/F93E3E/F93E3E.png) DELETE /students/:id
 
 - Remove student
 
 - **204** : Student removed
 - **404** : Student Id not found
+
+---
 
 ## Feedbacks?
 
