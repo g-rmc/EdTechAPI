@@ -13,7 +13,7 @@ function findSubjectById(id) {
 }
 
 function findSubjectByName(name) {
-    return prisma.classes.findUnique({
+    return prisma.subjects.findUnique({
         where: {
             name
         }
