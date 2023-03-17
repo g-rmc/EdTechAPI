@@ -1,11 +1,13 @@
 import express from "express";
 
-//import { myFunction } from '../controllers.js';
+import { subjectsController } from "../controllers/index.js";
+import { validateSchema } from '../middlewares/validateSchema.middleware.js';
+import { nameSchema } from "../schemas/index.js";
 
 const subjectsRouter = express.Router();
 
 subjectsRouter
-    .get('/', (req, res) => {res.sendStatus(400)})
-    .post('/', (req, res) => {res.sendStatus(400)});
+    .get('/', subjectsController.getSubjects)
+    .post('/', validateSchema(nameSchema, 'body'), subjectsController.postNewSubject);
 
 export { subjectsRouter };
