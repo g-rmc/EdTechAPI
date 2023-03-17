@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-    cleanDb();
+    await cleanDb();
 
     const classA = await prisma.classes.create({
         data: {
@@ -11,7 +11,9 @@ async function main() {
         }
     });
 
-    await prisma.students.createMany({
+    console.log("class: ", classA);
+
+    const students = await prisma.students.createMany({
         data: [
             {
                 name: "João",
@@ -25,6 +27,8 @@ async function main() {
             }
         ]
     });
+
+    console.log("students: ", students);
 
     const subjectI = await prisma.subjects.create({
         data: {
@@ -42,18 +46,22 @@ async function main() {
         }
     });
 
-    await prisma.classes_subjects.createMany({
+    console.log("subjects: ", subjectI, subjectII, subjectIII);
+
+    const classes_subjects = await prisma.classes_subjects.createMany({
         data: [
             {
                 classesId: classA.id,
-                subjectId: subjectI
+                subjectId: subjectI.id
             },
             {
                 classesId: classA.id,
-                subjectId: subjectII
+                subjectId: subjectII.id
             },
         ]
-    })
+    });
+
+    console.log("classes_subjects: ", classes_subjects);
 
     const teacherI = await prisma.teachers.create({
         data: {
@@ -68,7 +76,9 @@ async function main() {
         }
     });
 
-    await prisma.teachers_subjects.createMany({
+    console.log("teachers: ", teacherI, teacherII);
+
+    const teachers_subject = await prisma.teachers_subjects.createMany({
         data: [
             {
                 teacherId: teacherI.id,
@@ -83,16 +93,18 @@ async function main() {
                 subjectId: subjectIII.id
             },
         ]
-    })
+    });
+
+    console.log("teachers_subject: ", teachers_subject);
 }
 
 async function cleanDb() {
-    await prisma.classes.deleteMany({});
-    await prisma.teachers.deleteMany({});
-    await prisma.subjects.deleteMany({});
-    await prisma.students.deleteMany({});
     await prisma.classes_subjects.deleteMany({});
     await prisma.teachers_subjects.deleteMany({});
+    await prisma.subjects.deleteMany({});
+    await prisma.students.deleteMany({});
+    await prisma.teachers.deleteMany({});
+    await prisma.classes.deleteMany({});
 }
 
 main()

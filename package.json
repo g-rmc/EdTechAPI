@@ -9,11 +9,11 @@
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
     "migration:generate": "npm run prisma generate",
-    "migration:run": "npm run prisma migrate dev",
-    "seed": "npm run prisma db seed"
+    "migration:run": "prisma migrate dev",
+    "seed": "prisma db seed"
   },
   "prisma": {
-    "seed": "npm run prisma/seed.js"
+    "seed": "node ./prisma/seed.js"
   },
   "keywords": [],
   "license": "ISC",
