@@ -4,7 +4,10 @@ import express from "express";
 
 const studentsRouter = express.Router();
 
-studentsRouter.get('/', () => {});
-studentsRouter.post('/', () => {});
+studentsRouter
+    .get('/', (req, res) => {res.sendStatus(400)})
+    .get('/:ID', (req, res) => {res.sendStatus(400)})
+    .post('/', (req, res) => {res.sendStatus(400)})
+    .delete('/:ID', (req, res) => {res.sendStatus(400)});
 
 export { studentsRouter };

@@ -4,7 +4,8 @@ import express from "express";
 
 const subjectsRouter = express.Router();
 
-subjectsRouter.get('/', () => {});
-subjectsRouter.post('/', () => {});
+subjectsRouter
+    .get('/', (req, res) => {res.sendStatus(400)})
+    .post('/', (req, res) => {res.sendStatus(400)});
 
 export { subjectsRouter };

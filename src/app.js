@@ -9,9 +9,9 @@ app
     .use(express.json())
     .get('/status', (req, res) => res.send('Ok!'))
     .get('/hello', (req, res) => res.send('Hello!'))
-    .use('/class', classesRouter)
-    .use('/student', studentsRouter)
-    .use('/subject', subjectsRouter)
-    .use('/teacher', teachersRouter)
+    .use('/classes', classesRouter)
+    .use('/students', studentsRouter)
+    .use('/subjects', subjectsRouter)
+    .use('/teachers', teachersRouter)
 
 export default app;
