@@ -8,7 +8,7 @@ const teachersRouter = express.Router();
 
 teachersRouter
     .get('/', teachersController.getTeachers)
-    .get('/:id', validateSchema(idSchema, 'params'), (req, res) => {res.sendStatus(400)})
+    .get('/:id', validateSchema(idSchema, 'params'), teachersController.getTeacherById)
     .post('/', validateSchema(nameSchema, 'body'), (req, res) => {res.sendStatus(400)})
     .post('/subject', validateSchema(teacherSubjectSchema, 'body'), (req, res) => {res.sendStatus(400)})
     .delete('/:id', validateSchema(idSchema, 'params'), (req, res) => {res.sendStatus(400)});

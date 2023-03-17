@@ -9,6 +9,19 @@ async function getTeachers(req, res) {
     }
 }
 
+async function getTeacherById(req, res) {
+    const teacherId = +req.params.id;
+
+    try {
+        const teacher = await teachersService.getTeacherById(teacherId);
+        res.send(teacher);
+    } catch (error) {
+        if (error.message.includes('not found')) return res.status(404).send(error.message);
+        res.status(400).send(error.message);
+    }
+}
+
 export const teachersController = {
-    getTeachers
+    getTeachers,
+    getTeacherById
 }
