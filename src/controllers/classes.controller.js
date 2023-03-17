@@ -16,6 +16,7 @@ async function postNewClass(req, res) {
         await classesService.createNewUniqueClass(className);
         res.sendStatus(201);
     } catch (error) {
+        if (error.message.includes('already exists')) return res.status(409).send(error.message);
         res.status(400).send(error.message);
     }
 }
@@ -28,6 +29,7 @@ async function postClassSubject(req, res) {
         await classesService.createClassSubject(classId, subjectId);
         res.sendStatus(201);
     } catch (error) {
+        if (error.message.includes('already exists')) return res.status(409).send(error.message);
         if (error.message.includes('not found')) return res.status(404).send(error.message);
         res.status(400).send(error.message);
     }

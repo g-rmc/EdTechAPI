@@ -19,6 +19,9 @@ async function createClassSubject(classId, subjectId) {
     const validSubjectId = await subjectsRepository.findSubjectById(subjectId);
     if (!validSubjectId) throw new Error('subjectId not found');
 
+    const duplicatedClassSubject = await classesRepository.findClassSubjectById(classId, subjectId);
+    if (duplicatedClassSubject) throw new Error('classSubject already exists')
+
     return await classesRepository.createClassSubjectById(classId, subjectId);
 }
 

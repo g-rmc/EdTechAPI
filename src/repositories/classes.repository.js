@@ -28,6 +28,15 @@ function createClassByName(name) {
     });
 }
 
+function findClassSubjectById(classId, subjectId) {
+    return prisma.classes_subjects.findFirst({
+        where: {
+            classId,
+            subjectId
+        }
+    })
+}
+
 function createClassSubjectById(classId, subjectId) {
     return prisma.classes_subjects.create({
         data: {
@@ -42,5 +51,6 @@ export const classesRepository = {
     findClassById,
     findClassByName,
     createClassByName,
+    findClassSubjectById,
     createClassSubjectById
 }

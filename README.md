@@ -6,9 +6,50 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 
 ### GET /status
 
-Verify if the server is online
+- **200** : Ok! The server is working!
 
-- **200** : Ok! The server is working
+### GET /classes
+
+- List of classes
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Turma 8A"
+  }
+]
+```
+
+### POST /classes
+
+- Create new class with unique name
+
+```json
+{
+  "name": "Turma 8B"
+}
+```
+
+- **201** : Class created
+- **400** : Invalid body (see error message)
+- **409** : Class name already exists
+
+### POST /classes/subject
+
+- Create new register of subject for a class
+
+```json
+{
+  "classId": "1",
+  "subjectId": "1"
+}
+```
+
+- **201** : Register created
+- **400** : Invalid body (see error message)
+- **404** : Class or Subject Id not found (see error message)
+- **409** : Register already exists
 
 ## Feedbacks?
 
