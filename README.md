@@ -117,6 +117,35 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 
 ---
 
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /subjects
+
+- List of subjects
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Matemática"
+  }
+]
+```
+
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /subjects
+
+- Create new subject with unique name
+
+```json
+{
+  "name": "Geografia"
+}
+```
+
+- **201** : Class created
+- **400** : Invalid body (see error message)
+- **409** : Subject name already exists
+
+---
+
 ## Feedbacks?
 
 This project is part of my portfolio, any feedback will be greatly appreciated.
