@@ -14,7 +14,23 @@ function findStudentById(id) {
             id
         },
         include: {
-            classes: true
+            classes: {
+                include: {
+                    classes_subjects: {
+                        include: {
+                            subjects: {
+                                include: {
+                                    teachers_subjects: {
+                                        include: {
+                                            teachers: true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     });
 }
