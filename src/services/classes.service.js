@@ -5,6 +5,14 @@ async function getClassesList() {
     return classesList;
 }
 
+async function createNewUniqueClass(className) {
+    const duplicatedClass = await classesRepository.findClassByName(className);
+    if (duplicatedClass) throw new Error('className already exists');
+
+    return await classesRepository.createClassByName(className);
+}
+
 export const classesService = {
-    getClassesList
+    getClassesList,
+    createNewUniqueClass,
 }

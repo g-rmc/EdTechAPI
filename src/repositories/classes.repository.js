@@ -12,6 +12,14 @@ function findClassById(id) {
     });
 }
 
+function findClassByName(name) {
+    return prisma.classes.findUnique({
+        where: {
+            name
+        }
+    });
+}
+
 function createClassByName(name) {
     return prisma.classes.create({
         data: {
@@ -23,5 +31,6 @@ function createClassByName(name) {
 export const classesRepository = {
     findClasses,
     findClassById,
+    findClassByName,
     createClassByName,
 }
