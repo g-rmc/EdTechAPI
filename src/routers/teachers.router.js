@@ -1,14 +1,16 @@
 import express from "express";
 
-//import { myFunction } from '../controllers.js';
+import { teachersController } from '../controllers/index.js';
+import { validateSchema } from '../middlewares/validateSchema.middleware.js';
+import { nameSchema, idSchema, teacherSubjectSchema } from "../schemas/index.js";
 
 const teachersRouter = express.Router();
 
 teachersRouter
-    .get('/', (req, res) => {res.sendStatus(400)})
-    .get('/:id', (req, res) => {res.sendStatus(400)})
-    .post('/', (req, res) => {res.sendStatus(400)})
-    .post('/subject', (req, res) => {res.sendStatus(400)})
-    .delete('/:id', (req, res) => {res.sendStatus(400)});
+    .get('/', teachersController.getTeachers)
+    .get('/:id', validateSchema(idSchema, 'params'), (req, res) => {res.sendStatus(400)})
+    .post('/', validateSchema(nameSchema, 'body'), (req, res) => {res.sendStatus(400)})
+    .post('/subject', validateSchema(teacherSubjectSchema, 'body'), (req, res) => {res.sendStatus(400)})
+    .delete('/:id', validateSchema(idSchema, 'params'), (req, res) => {res.sendStatus(400)});
 
 export { teachersRouter };
