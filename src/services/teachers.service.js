@@ -26,7 +26,15 @@ async function getTeacherById(teacherId) {
     return teacher;
 }
 
+async function createNewTeacher(name, email) {
+    const duplicatedEmail = await teachersRepository.findTeacherByEmail(email);
+    if (duplicatedEmail) throw new Error('teacher email already exists');
+
+    return await teachersRepository.createTeacher(name, email);
+}
+
 export const teachersService = {
     getTeachersList,
-    getTeacherById
+    getTeacherById,
+    createNewTeacher
 }

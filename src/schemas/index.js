@@ -19,6 +19,11 @@ export const studentSchema = Joi.object({
     classId: Joi.number().min(1).required(),
 });
 
+export const teacherSchema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+});
+
 export const teacherSubjectSchema = Joi.object({
     teacherId: Joi.number().min(1).required(),
     subjectId: Joi.number().min(1).required(),

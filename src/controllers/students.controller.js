@@ -23,7 +23,7 @@ async function getStudentById(req, res) {
 
 async function postNewStudent(req, res) {
     const {name, email} = req.body;
-    const classId = +req.body.classId
+    const classId = +req.body.classId;
 
     try {
         await studentsService.createNewStudent(name, email, classId);
