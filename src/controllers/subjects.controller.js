@@ -1,5 +1,5 @@
-//import { subjectsService } from "../services/index.js";
-const subjectsService = {};
+import { subjectsService } from "../services/index.js";
+
 async function getSubjects(req, res) {
     try {
         const subjects = await subjectsService.getSubjectsList();
