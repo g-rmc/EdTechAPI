@@ -51,6 +51,66 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 - **404** : Class or Subject Id not found (see error message)
 - **409** : Register already exists
 
+### GET /students
+
+- List of students
+
+```json
+[
+  {
+    "id": 1,
+    "name": "João",
+    "email": "joao@email.com",
+    "classId": 1,
+    "classes": {
+      "id": 1,
+      "name": "Turma 8A"
+    }
+  }
+]
+```
+
+### GET /students/:id
+
+- Student info
+
+```json
+{
+  "id": 2,
+  "name": "Maria",
+  "email": "maria@email.com",
+  "classId": 1,
+  "classes": {
+    "id": 1,
+    "name": "Turma 8A"
+  }
+}
+```
+
+### POST /students
+
+- Create new student
+
+```json
+{
+  "name": "Carlos",
+  "email": "carlos@email.com",
+  "classId": "1"
+}
+```
+
+- **201** : Student created
+- **400** : Invalid body (see error message)
+- **404** : Class Id not found
+- **409** : Student email already exists
+
+### DELETE /students/:id
+
+- Remove student
+
+- **204** : Student removed
+- **404** : Student Id not found
+
 ## Feedbacks?
 
 This project is part of my portfolio, any feedback will be greatly appreciated.
