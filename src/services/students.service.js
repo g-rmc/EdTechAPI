@@ -12,6 +12,22 @@ async function getStudentById(studentId) {
     return student;
 }
 
+async function createNewStudent(name, email, classId) {
+    const duplicatedEmail = await studentsRepository.findStudentByEmail(email);
+    if (duplicatedEmail) throw new Error('student email already exists');
+
+    const validClassId = await classesRepository.findClassById(classId);
+    if (!validClassId) throw new Error('classId not found');
+
+    return await studentsRepository.createStudent(name, email, classId);
+}
+
+
+
+
+
+
+
 async function createNewUniqueClass(className) {
     const duplicatedClass = await classesRepository.findClassByName(className);
     if (duplicatedClass) throw new Error('className already exists');
@@ -34,5 +50,6 @@ async function createClassSubject(classId, subjectId) {
 
 export const studentsService = {
     getStudentsList,
-    getStudentById
+    getStudentById,
+    createNewStudent
 }
