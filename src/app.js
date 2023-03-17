@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-//import coasterRouter from './routers/coaster.router.js';
+import { classesRouter, studentsRouter, subjectsRouter, teachersRouter } from './routers/index.js';
 
 const app = express();
 
@@ -9,8 +9,9 @@ app
     .use(express.json())
     .get('/status', (req, res) => res.send('Ok!'))
     .get('/hello', (req, res) => res.send('Hello!'))
-    //.use('/class', classesRouter)
-    //.use('/teacher', teachersRouter)
-    //.use('/student', classesRouter);
+    .use('/class', classesRouter)
+    .use('/student', studentsRouter)
+    .use('/subject', subjectsRouter)
+    .use('/teacher', teachersRouter)
 
 export default app;
