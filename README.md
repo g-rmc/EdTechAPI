@@ -189,6 +189,44 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 }
 ```
 
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /teachers
+
+- Create new teacher
+
+```json
+{
+  "name": "Sr Antonio",
+  "email": "profantonio@email.com"
+}
+```
+
+- **201** : Teacher created
+- **400** : Invalid body (see error message)
+- **409** : Student email already exists
+
+### ![#49CC90](https://placehold.co/15x15/49CC90/49CC90.png) POST /teachers/subject
+
+- Create new register of subject for a teacher
+
+```json
+{
+  "teacherId": "1",
+  "subjectId": "1"
+}
+```
+
+- **201** : Register created
+- **400** : Invalid body (see error message)
+- **404** : Class or Subject Id not found (see error message)
+- **409** : Register already exists
+
+### ![#F93E3E](https://placehold.co/15x15/F93E3E/F93E3E.png) DELETE /teachers/:id
+
+- Remove teacher and teacher subjects
+
+- **204** : Teacher removed
+- **404** : Teacher Id not found
+
 ## Feedbacks?
 
 This project is part of my portfolio, any feedback will be greatly appreciated.
