@@ -1,13 +1,20 @@
 import { prisma } from '../database/database.js';
 
 function findStudents() {
-    return prisma.students.findMany();
+    return prisma.students.findMany({
+        include: {
+            classes: true
+        }
+    });
 }
 
 function findStudentById(id) {
     return prisma.students.findUnique({
         where: {
             id
+        },
+        include: {
+            classes: true
         }
     });
 }
