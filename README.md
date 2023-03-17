@@ -157,6 +157,38 @@ An API for schools to manage classes, subjects, teachers and students that uses 
 
 ---
 
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /teachers
+
+- List of teachers
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Sr Carlos",
+    "email": "profcarlos@email.com"
+  }
+]
+```
+
+### ![#61AFFE](https://placehold.co/15x15/61AFFE/61AFFE.png) GET /teachers/:id
+
+- Teacher info with subjects
+
+```json
+{
+  "id": 1,
+  "name": "Sr Carlos",
+  "email": "profcarlos@email.com",
+  "subjects": [
+    {
+      "subjectId": 1,
+      "subjectName": "Matemática"
+    }
+  ]
+}
+```
+
 ## Feedbacks?
 
 This project is part of my portfolio, any feedback will be greatly appreciated.
