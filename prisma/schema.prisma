@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model classes {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique @db.VarChar(255)
+  classes_subjects classes_subjects[]
+  students         students[]
+}
+
+model classes_subjects {
+  id        Int       @id @default(autoincrement())
+  classesId Int?
+  subjectId Int?
+  classes   classes?  @relation(fields: [classesId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  subjects  subjects? @relation(fields: [subjectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model students {
+  id      Int      @id @default(autoincrement())
+  name    String   @db.VarChar(255)
+  email   String   @unique @db.VarChar(255)
+  classId Int?
+  classes classes? @relation(fields: [classId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model subjects {
+  id                Int                 @id @default(autoincrement())
+  name              String              @unique @db.VarChar(255)
+  classes_subjects  classes_subjects[]
+  teachers_subjects teachers_subjects[]
+}
+
+model teachers {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(255)
+  email             String              @unique @db.VarChar(255)
+  teachers_subjects teachers_subjects[]
+}
+
+model teachers_subjects {
+  id        Int       @id @default(autoincrement())
+  teacherId Int?
+  subjectId Int?
+  subjects  subjects? @relation(fields: [subjectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teachers  teachers? @relation(fields: [teacherId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

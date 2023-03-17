@@ -7,17 +7,25 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "migration:generate": "npm run prisma generate",
+    "migration:run": "npm run prisma migrate dev",
+    "seed": "npm run prisma db seed"
+  },
+  "prisma": {
+    "seed": "npm run prisma/seed.js"
   },
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.11.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.8.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "prisma": "^4.11.0"
   }
 }
