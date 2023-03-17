@@ -36,6 +36,24 @@ function createTeacher(name, email) {
     });
 }
 
+function findTeacherSubjectById(teacherId, subjectId) {
+    return prisma.teachers_subjects.findFirst({
+        where: {
+            teacherId,
+            subjectId
+        }
+    })
+}
+
+function createTeacherSubjectById(teacherId, subjectId) {
+    return prisma.teachers_subjects.create({
+        data: {
+            teacherId,
+            subjectId
+        }
+    })
+}
+
 function removeTeacherById(id) {
     return prisma.teachers.delete({
         where: {
@@ -49,5 +67,7 @@ export const teachersRepository = {
     findTeacherById,
     findTeacherByEmail,
     createTeacher,
+    findTeacherSubjectById,
+    createTeacherSubjectById,
     removeTeacherById
 }

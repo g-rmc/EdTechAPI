@@ -10,7 +10,7 @@ teachersRouter
     .get('/', teachersController.getTeachers)
     .get('/:id', validateSchema(idSchema, 'params'), teachersController.getTeacherById)
     .post('/', validateSchema(teacherSchema, 'body'), teachersController.postNewTeacher)
-    .post('/subject', validateSchema(teacherSubjectSchema, 'body'), (req, res) => {res.sendStatus(400)})
-    .delete('/:id', validateSchema(idSchema, 'params'), (req, res) => {res.sendStatus(400)});
+    .post('/subject', validateSchema(teacherSubjectSchema, 'body'), teachersController.postTeacherSubject)
+    .delete('/:id', validateSchema(idSchema, 'params'), teachersController.deleteTeacher);
 
 export { teachersRouter };

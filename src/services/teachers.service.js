@@ -1,4 +1,4 @@
-import { teachersRepository } from "../repositories/index.js";
+import { teachersRepository, subjectsRepository } from "../repositories/index.js";
 
 async function getTeachersList() {
     const teachersList = await teachersRepository.findTeachers();
@@ -33,8 +33,22 @@ async function createNewTeacher(name, email) {
     return await teachersRepository.createTeacher(name, email);
 }
 
+async function createTeacherSubject(teacherId, subjectId) {
+    const validTeacherId = await teachersRepository.findTeacherById(teacherId);
+    if (!validTeacherId) throw new Error('teacherId not found');
+
+    const validSubjectId = await subjectsRepository.findSubjectById(subjectId);
+    if (!validSubjectId) throw new Error('subjectId not found');
+
+    const duplicatedTeacherSubject = await teachersRepository.findTeacherSubjectById(teacherId, subjectId);
+    if (duplicatedTeacherSubject) throw new Error('teacherSubject already exists')
+
+    return await teachersRepository.createTeacherSubjectById(teacherId, subjectId);
+}
+
 export const teachersService = {
     getTeachersList,
     getTeacherById,
-    createNewTeacher
+    createNewTeacher,
+    createTeacherSubject
 }
